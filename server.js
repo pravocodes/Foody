@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import colors from "colors";
 import connectDB from "./config/db.js";
 import authRoute from "./routes/authRoute.js";
+import postRoute from './routes/postRoute.js';
 
 const app = express();
 dotenv.config();
@@ -12,6 +13,7 @@ connectDB();
 app.use(express.json());
 
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/post", postRoute);
 
 app.use("/", (req, res) => {
   res.send("<h1>Foodies</h1>");

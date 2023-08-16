@@ -1,6 +1,6 @@
 import express from "express";
-import { createpostController, getpostController } from "../controllers/postController.js";
 import { registerController ,loginController } from "../controllers/authController.js";
+import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
@@ -8,8 +8,8 @@ router.post("/register", registerController);
 
 router.post("/login",loginController);
 
-router.post("/createpost", createpostController);
-
-router.post("/getpost", getpostController)
+router.get("/test",requireSignIn,isAdmin,(req,res)=>{
+    res.send("Sign in required Route")
+})
 
 export default router;

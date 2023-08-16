@@ -3,27 +3,17 @@ import usermodel from "../models/usermodel.js";
 
 export const createpostController = async (req, res) => {
     try{
-        const {content, description, createdBy} = req.body;
+        const {content, description} = req.body;
         if (!content){
             return res.send({
                 message: "Please enter an Image/Video",
             });
         }
-        if (!createdBy){
-            return res.send({
-                message: "Please log in",
-            })
-        }
-        const userExists = await usermodel.exists({ _id: createdBy });
-        if (!userExists) {
-            return res.send({
-                message: "User not found",
-            });
-        }
+        const id = req.user._id;
         const post = await new postmodel({
-            content,
-            description,
-            createdBy,
+            content: content,
+            description: description,
+            createdBy: id,
         }).save();
         res.status(200).send({
             success: true,
@@ -44,7 +34,7 @@ export const getpostController = async (req,res) => {
     try{
         const posts = await postmodel.find().sort({ likes: -1});
         const allposts = posts.map(
-            (p) => posts._id
+            (p) => p._id
         );
         return res.status(200).send({
             success: true,
@@ -56,6 +46,28 @@ export const getpostController = async (req,res) => {
         res.status(400).send({
             success:false,
             message:"Couldn't fetch posts",
+            e
+        })
+    }
+}
+
+export const getpostbyIdController = async (req,res) => {
+    try{
+        const Id=req.user._id;
+        const posts = await postmodel.find({ createdBy: Id }).sort({createdAt:-1});
+        const allposts = posts.map(
+            (p) => p._id
+        )
+        return res.status(200).send({
+            success:true,
+            message:"Posts fetched successfully",
+            allposts
+        })
+    }
+    catch(e){
+        res.status(400).send({
+            success:false,
+            message:"Coudn't fetch posts",
             e
         })
     }
