@@ -4,7 +4,12 @@ import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone } = req.body;
+    const { name, email, password, phone, username } = req.body;
+    if (!username) {
+      return res.send({
+        message: "Enter Username",
+      });
+    }
     if (!name || !password) {
       return res.send({
         message: "Enter username or password",
@@ -32,11 +37,21 @@ export const registerController = async (req, res) => {
       });
     }
 
+    const existingusername = await usermodel.findOne({ username });
+
+    if (existingusername) {
+      return res.status(300).send({
+        success: false,
+        message: "Username is already taken",
+      });
+    }
+
     const user = await new usermodel({
       name,
       email,
       password: hashpass,
       phone,
+      username,
     }).save();
 
     res.status(200).send({
@@ -102,3 +117,98 @@ export const loginController = async (req, res) => {
     });
   }
 };
+
+export const searchuserController = async (req, res) => {
+  try {
+    const { name } = req.body;
+    if (!name) {
+      return res.status(200).send({
+        success: false,
+        message: "Please enter the user's name"
+      })
+    }
+    const users = await usermodel.find({ name }).sort({ createdAt: -1 });
+    //switch createdAt by number of followers
+    if (!users) {
+      res.status(200).send({
+        success: false,
+        message: 'User not found'
+      })
+    }
+    const alluser = users.map(
+      (u) => u.id
+    )
+    res.status(200).send({
+      success: true,
+      message: "Users fetched successfully",
+      users: alluser
+    })
+  }
+  catch (e) {
+    res.status(400).send({
+      success: false,
+      message: "Error finding the user",
+      e
+    })
+  }
+}
+
+export const followController = async (req, res) => {
+  try {
+    const id = req.user._id;
+    const { followid } = req.body;
+    const userid = await usermodel.findOne({ username: followid });
+    if (!userid) {
+      return res.status(200).send({
+        success: false,
+        message: "Invalid user"
+      })
+    }
+    if (userid.followers.includes(id)) {
+      return res.status(200).send({
+        success: false,
+        message: "You are already following the user"
+      })
+    }
+    userid.followers.push(id);
+    userid.numberoffollowers = userid.followers.length;
+    await userid.save();
+    res.status(200).send({
+      success: true,
+      message: "You are now following the user"
+    })
+  }
+  catch (e) {
+    res.status(400).send({
+      success: false,
+      message: "Follow error",
+      e
+    })
+  }
+}
+
+export const followingController = async(req,res) => {
+  try{
+    const { searchid } = req.body;
+    const id = await usermodel.findOne({ username: searchid });
+    if (!id) {
+      return res.status(200).send({
+        success:false,
+        message:"no such user",
+      })
+    }
+    const followers = id.followers;
+    return res.status(200).send({
+      success:true,
+      message:"all followers fetched",
+      followers
+    })
+  }
+  catch(e){
+    res.status(200).send({
+      success:false,
+      messsage:"error in getting following",
+      e
+    })
+  }
+}
