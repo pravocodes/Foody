@@ -5,7 +5,7 @@ const userschema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     name: {
       type: String,
@@ -21,31 +21,31 @@ const userschema = new mongoose.Schema(
       required: true,
     },
     phone: {
-      type: Number,
+      type: number,
       required: true,
     },
     role: {
       type: Number,
       default: 0,
     },
-    followers:{
-      type:Array,
+    followers: {
+      type: Array,
     },
-    numberoffollowers:{
+    numberoffollowers: {
       type: Number,
       default: 0,
     },
     following: {
       type: Number,
       default: 0,
-    }
+    },
   },
   {
     timestamps: true,
   }
 );
 
-userschema.pre('save', function (next) {
+userschema.pre("save", function (next) {
   this.numberoffollowers = this.followers.length;
   next();
 });
