@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Notyf } from "notyf";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -7,6 +8,14 @@ const Register = () => {
   const [number, setNumber] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const notyf = new Notyf({
+    duration: 2000,
+    position: {
+      x: "center",
+      y: "top",
+    },
+  });
 
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -19,12 +28,13 @@ const Register = () => {
         password,
       });
       if (res || res.data || res.data.success) {
-        alert(res.data && res.data.message);
+        notyf.success(res.data && res.data.message);
       } else {
-        alert("error in registering");
+        notyf.error(res.data.message);
       }
     } catch (error) {
       console.log(error);
+      notyf.error("Something went wrong");
     }
   };
 
