@@ -33,9 +33,9 @@ const Login = () => {
       return(
         <>
         <div className="Login-form-container">
-          <form className='main-form'>
+          <form className='Login-main-form'>
             <h2>Login</h2>
-            <div className="inputbox">
+            <div className="Login-inputbox">
               <input
               type="text"
                 required
@@ -46,7 +46,7 @@ const Login = () => {
               />
               
             </div>
-            <div className="inputbox">
+            <div className="Login-inputbox">
               <input
                 type="Password"
                 required
@@ -61,7 +61,7 @@ const Login = () => {
             <button > Sign Up</button>
             <button > Forgot Password</button>
             </div> */}
-            <input type='submit' onClick={handlesubmit}></input>
+            <input type='submit' className='Login-submit-form' onClick={handlesubmit}></input>
           </form>
         </div>
         </>
