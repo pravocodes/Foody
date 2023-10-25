@@ -1,10 +1,10 @@
 import "./App.css";
-import Login from "./pages/Login";
-import Homepage from "./pages/Homepage";
-import Register from "./pages/Register";
+import Login from "./Pages/Login";
+import Homepage from "./Pages/Homepage";
+import Register from "./Pages/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Userhome from "./pages/user/Userhome";
+import Userhome from "./Pages/user/Userhome";
 import PrivateRoute from "./components/Routes/Private";
 
 function App() {

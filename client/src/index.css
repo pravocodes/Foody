@@ -1,34 +1,16 @@
-.register-form {
-  /* justify-content: center; */
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid black;
-}
 
-.register-box {
-  padding: 20px;
-}
-
-.register-box {
-  padding: 10px;
-}
 input {
-  width: 250px;
-  height: 20px;
   border: none;
-  border-bottom: 1px solid black;
   outline: none;
 }
 
-.Login-form-container {
+/* .Login-form-container {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border: 2px solid black;
-}
+} */
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;

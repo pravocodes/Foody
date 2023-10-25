@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Register.css";
 import axios from "axios";
 import { Notyf } from "notyf";
 
@@ -39,11 +40,13 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
-      <form>
-        <div className="register-form">
-          <div className="register-box">
-            <div className="register-box">
+    <div className="register-container">
+      <div className="register-box">
+        <div className="left"></div>
+        <div className="right">
+          <h1>Sign Up</h1>
+          <form className="Login-main-form form-group">
+            <div className="register-inputbox">
               {/* <label htmlFor="username">Username: </label> */}
               <input
                 type="text"
@@ -54,29 +57,40 @@ const Register = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div className="register-box">
-              {/* <label htmlFor="name">Name</label> */}
-              <input
-                type="text"
-                placeholder="name"
-                id="name"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+            <br />
+            <div
+              className="group"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <div className="register-inputbox-group">
+                {/* <label htmlFor="name">Name</label> */}
+                <input
+                  type="text"
+                  placeholder="name"
+                  id="name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div
+                className="register-inputbox-group"
+                style={{ marginLeft: "15px" }}
+              >
+                {/* <label htmlFor="Mobile Number">Mobile Number</label> */}
+                <input
+                  type="number"
+                  placeholder="Mobile Number"
+                  id="Mobile Number"
+                  required
+                  value={number}
+                  onChange={(e) => setNumber(e.target.value)}
+                />
+              </div>
             </div>
-            <div className="register-box">
-              {/* <label htmlFor="Mobile Number">Mobile Number</label> */}
-              <input
-                type="number"
-                placeholder="Mobile Number"
-                id="Mobile Number"
-                required
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-              />
-            </div>
-            <div className="register-box">
+
+            <br />
+            <div className="register-inputbox">
               {/* <label htmlFor="Email">Email</label> */}
               <input
                 type="text"
@@ -87,7 +101,8 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="register-box">
+            <br />
+            <div className="register-inputbox">
               {/* <label htmlFor="password">Password</label> */}
               <input
                 type="password"
@@ -99,15 +114,14 @@ const Register = () => {
               />
             </div>
             <br />
-            <div className="button">
+            <div className="register-button">
               <button type="submit" onClick={handlesubmit}>
                 Register
               </button>
-              <button>Login</button>
             </div>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

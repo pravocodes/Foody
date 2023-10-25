@@ -43,38 +43,56 @@ const Login = () => {
   };
   return (
     <>
-      <div className="Login-form-container">
-        <form className="Login-main-form">
-          <h2>Login</h2>
-          <div className="Login-inputbox">
-            <input
-              type="text"
-              required
-              placeholder="Email or Phone Number"
-              value={email}
-              onChange={(e) => setemail(e.target.value)}
-            />
-          </div>
-          <div className="Login-inputbox">
-            <input
-              type="Password"
-              required
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setpassword(e.target.value)}
-            />
-          </div>
+      <div className="Login-container">
+        <div className="login-box">
+          <div className="login-left"></div>
+          <div className="login-right">
+            <h1>Foodie</h1>
+            <form className="Login-main-form form-group">
+              <div className="Login-inputbox">
+                <input
+                  className="form-control"
+                  type="text"
+                  required
+                  placeholder="Email or Phone Number"
+                  value={email}
+                  onChange={(e) => setemail(e.target.value)}
+                />
+              </div>
+              <br />
+              <div className="Login-inputbox">
+                <input
+                  className="form-control"
+                  type="Password"
+                  required
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setpassword(e.target.value)}
+                />
+              </div>
 
-          {/* <div className='links'>
-            <button > Sign Up</button>
-            <button > Forgot Password</button>
-            </div> */}
-          <input
-            type="submit"
-            className="Login-submit-form"
-            onClick={handlesubmit}
-          ></input>
-        </form>
+              <br />
+              <div className="login-button">
+                <button
+                  type="submit"
+                  className="btn form-control Login-submit-form"
+                  onClick={handlesubmit}
+                >
+                  Log In
+                </button>
+              </div>
+            </form>
+            <div className="signlink">
+              <a href="/register">
+                <span className="no-sign-link">Can't sign in?</span>
+              </a>
+            </div>
+            <div className="new-register">
+              <span>New to Foodie?</span>
+              <a href="/register">Sign up.</a>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
