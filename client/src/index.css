@@ -4,6 +4,21 @@ input {
   outline: none;
 }
 
+.profile{
+  margin-left: 100px;
+  
+}
+.main{
+  margin-left: 300px;
+  margin-top: 80px;
+}
+
+.profile img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
 /* .Login-form-container {
   position: fixed;
   left: 50%;

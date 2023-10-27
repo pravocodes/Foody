@@ -57,7 +57,6 @@ const Register = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <br />
             <div
               className="group"
               style={{ display: "flex", justifyContent: "center" }}
@@ -88,8 +87,6 @@ const Register = () => {
                 />
               </div>
             </div>
-
-            <br />
             <div className="register-inputbox">
               {/* <label htmlFor="Email">Email</label> */}
               <input
@@ -101,7 +98,6 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <br />
             <div className="register-inputbox">
               {/* <label htmlFor="password">Password</label> */}
               <input
@@ -113,7 +109,6 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <br />
             <div className="register-button">
               <button type="submit" onClick={handlesubmit}>
                 Register

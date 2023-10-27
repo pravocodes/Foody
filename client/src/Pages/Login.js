@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { Notyf } from "notyf";
@@ -32,7 +33,7 @@ const Login = () => {
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate(location.state || "/");
+        navigate(location.state || "/home");
       } else {
         notyf.error(res.data.message);
       }
@@ -51,7 +52,6 @@ const Login = () => {
             <form className="Login-main-form form-group">
               <div className="Login-inputbox">
                 <input
-                  className="form-control"
                   type="text"
                   required
                   placeholder="Email or Phone Number"
@@ -62,7 +62,6 @@ const Login = () => {
               <br />
               <div className="Login-inputbox">
                 <input
-                  className="form-control"
                   type="Password"
                   required
                   placeholder="Password"
@@ -73,23 +72,19 @@ const Login = () => {
 
               <br />
               <div className="login-button">
-                <button
-                  type="submit"
-                  className="btn form-control Login-submit-form"
-                  onClick={handlesubmit}
-                >
+                <button type="submit" onClick={handlesubmit}>
                   Log In
                 </button>
               </div>
             </form>
             <div className="signlink">
-              <a href="/register">
+              <Link to="/register">
                 <span className="no-sign-link">Can't sign in?</span>
-              </a>
+              </Link>
             </div>
             <div className="new-register">
               <span>New to Foodie?</span>
-              <a href="/register">Sign up.</a>
+              <Link to="/register">Sign up.</Link>
             </div>
           </div>
         </div>

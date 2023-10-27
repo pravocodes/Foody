@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from "react";
+import "./userhome.css";
+import Navbar from "../../components/Navbar";
 
 const Userhome = () => {
   return (
-    <div>
-      <h1>User HOME</h1>
-    </div>
-  )
-}
+    <>
+      <Navbar />
+      <section></section>
+    </>
+  );
+};
 
-export default Userhome
+export default Userhome;
